@@ -12,7 +12,7 @@ class CallStats:
         date = datetime.today() - timedelta(days=1)     # Получаем вчерашнюю дату
         self.yesterday = date.strftime('%d.%m.%Y')
 
-    def incoming_calls(self, start_time=None, stop_time=None):
+    def incoming_calls(self, start_time=None, stop_time=None):  # Метод получения всех входящих звонков + новых
         start_time = start_time or self.yesterday
         stop_time = stop_time or self.yesterday
 
@@ -38,7 +38,7 @@ class CallStats:
                 i += 1
         return len(data['callDetails']), i
 
-    def outgoing_calls(self, start_time=None, stop_time=None):
+    def outgoing_calls(self, start_time=None, stop_time=None):  # Метод получения всех исходящих звонков
         start_time = start_time or self.yesterday
         stop_time = stop_time or self.yesterday
 
