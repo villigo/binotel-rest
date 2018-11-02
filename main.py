@@ -8,16 +8,22 @@ with open('config.yaml', 'r') as f:
 token = config['token']
 KEY = config['KEY']
 SECRET = config['SECRET']
+login = config['login']
+passwd = config['passwd']
 
 bot = telegram.Bot(token)
 
 calls = CallStats(KEY, SECRET)
 in_call, in_new_call = calls.incoming_calls()
 out_call = calls.outgoing_calls()
+get_call, get_call_new = calls.get_call(login, passwd)
+
+in_call = in_call + get_call
+in_new_call = in_new_call + get_call_new
 
 
 text = f'''
-Входящих звонков за вчера:
+Входящие звонки за вчера:
 Всего - {in_call}
 Новых - {in_new_call}
 
